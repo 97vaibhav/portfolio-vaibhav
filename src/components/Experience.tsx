@@ -79,7 +79,12 @@ const Experience = () => {
                             {exp.type === 'work' ? <Briefcase size={20} /> : <Mic size={20} />}
                         </div>
 
-                        <div className="timeline-content glass glow-on-hover">
+                        <motion.div
+                            className="timeline-content glass"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <h3 className="role">{exp.role}</h3>
                             <h4 className="company">{exp.company}</h4>
                             <p className="meta">{exp.period} | {exp.location}</p>
@@ -89,7 +94,7 @@ const Experience = () => {
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 ))}
             </div>

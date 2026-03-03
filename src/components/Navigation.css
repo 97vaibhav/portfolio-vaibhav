@@ -33,9 +33,24 @@
     padding: 0.5rem 1rem;
     border-radius: var(--radius-pill);
     transition: var(--transition);
+    position: relative;
+    z-index: 1;
 }
 
-.nav-link:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+}
+
+.active-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 238, 255, 0.1);
+    border: 1px solid rgba(0, 238, 255, 0.2);
+    border-radius: var(--radius-pill);
+    z-index: 0;
 }

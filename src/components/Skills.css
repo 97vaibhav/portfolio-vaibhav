@@ -22,6 +22,10 @@
 }
 
 .skill-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
     padding: 0.6rem 1.2rem;

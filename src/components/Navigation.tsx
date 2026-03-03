@@ -4,6 +4,7 @@ import './Navigation.css';
 
 const Navigation = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -11,7 +12,27 @@ const Navigation = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Setup intersection observer for detecting active section
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        }, {
+            threshold: 0,          // trigger as soon as any part enters
+            rootMargin: "-20% 0px -60% 0px"  // only fire when section is in the middle band
+        });
+
+        document.querySelectorAll('section[id]').forEach((section) => {
+            observer.observe(section);
+        });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            observer.disconnect();
+        };
     }, []);
 
     const navLinks = [
@@ -39,17 +60,34 @@ const Navigation = () => {
         >
             <nav className="nav-container glass">
                 <ul className="nav-list flex items-center justify-center gap-6">
-                    {navLinks.map((link) => (
-                        <li key={link.name}>
-                            <a
-                                href={link.href}
-                                className="nav-link"
-                                onClick={(e) => scrollToSection(e, link.href)}
-                            >
-                                {link.name}
-                            </a>
-                        </li>
-                    ))}
+                    {navLinks.map((link) => {
+                        const sectionId = link.href.substring(1);
+                        const isActive = activeSection === sectionId;
+
+                        return (
+                            <li key={link.name} style={{ position: 'relative' }}>
+                                <a
+                                    href={link.href}
+                                    className={`nav-link ${isActive ? 'active' : ''}`}
+                                    onClick={(e) => scrollToSection(e, link.href)}
+                                >
+                                    {link.name}
+                                </a>
+                                {isActive && (
+                                    <motion.div
+                                        className="active-pill"
+                                        layoutId="activeNavIndicator"
+                                        initial={false}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 380,
+                                            damping: 30
+                                        }}
+                                    />
+                                )}
+                            </li>
+                        );
+                    })}
                 </ul>
             </nav>
         </motion.header>

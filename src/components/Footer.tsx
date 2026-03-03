@@ -14,10 +14,10 @@ const Footer = () => {
                     <a href="mailto:1997guptavaibhav@gmail.com" className="footer-icon ml-auto mr-auto">
                         <Mail size={20} />
                     </a>
-                    <a href="#" className="footer-icon ml-auto mr-auto">
+                    <a href="https://www.linkedin.com/in/97vaibhav/" target="_blank" rel="noopener noreferrer" className="footer-icon ml-auto mr-auto">
                         <Linkedin size={20} />
                     </a>
-                    <a href="#" className="footer-icon ml-auto mr-auto">
+                    <a href="https://x.com/97GuptaVaibhav" target="_blank" rel="noopener noreferrer" className="footer-icon ml-auto mr-auto">
                         <Twitter size={20} />
                     </a>
                 </div>
