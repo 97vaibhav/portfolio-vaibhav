@@ -4,6 +4,9 @@ A premium, futuristic portfolio built with **React**, **TypeScript**, and **Vite
 
 ![Preview](https://raw.githubusercontent.com/lucide-react/lucide/main/icons/layers.svg) <!-- Replace with a real screenshot/image if available -->
 
+## Live Website : 
+97vaibhav-portfolio.netlify.app
+
 ---
 
 ## 🚀 Vision & Design
